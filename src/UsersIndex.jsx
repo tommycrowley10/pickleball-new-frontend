@@ -1,4 +1,4 @@
-export function UsersIndex({ users }) {
+export function UsersIndex({ users, onShow }) {
   return (
     <div>
       <h1>All users ({users.length} total)</h1>
@@ -9,6 +9,7 @@ export function UsersIndex({ users }) {
           <p>Email: {user.email}</p>
           <p>Username: {user.username}</p>
           <p>Password: {user.password}</p>
+          <button onClick={() => onShow(user)}>More info</button>
         </div>
       ))}
     </div>

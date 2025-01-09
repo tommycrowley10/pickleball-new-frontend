@@ -2,9 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { UsersIndex } from "./UsersIndex";
 import { UsersNew } from "./UsersNew";
+import { Modal } from "./Modal";
+import { UsersShow } from "./UsersShow";
 
 export function UsersPage() {
   const [users, setUsers] = useState([]);
+  const [isUsersShowVisible, setIsUsersShowVisible] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleIndex = () => {
     console.log("handleIndex");
@@ -22,12 +26,21 @@ export function UsersPage() {
     });
   };
 
+  const handleShow = (user) => {
+    console.log("handleShow", user);
+    setIsUsersShowVisible(true);
+    setCurrentUser(user);
+  };
+
   useEffect(handleIndex, []);
 
   return (
     <main>
       <UsersNew onCreate={handleCreate} />
-      <UsersIndex users={users} />
+      <UsersIndex users={users} onShow={handleShow} />
+      <Modal show={isUsersShowVisible} onClose={() => setIsUsersShowVisible(false)}>
+        <UsersShow user={currentUser} />
+      </Modal>
     </main>
   );
 }
