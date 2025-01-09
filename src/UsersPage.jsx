@@ -32,6 +32,23 @@ export function UsersPage() {
     setCurrentUser(user);
   };
 
+  const handleUpdate = (user, params, successCallback) => {
+    console.log("handleUpdate");
+    axios.patch(`/users/${user.id}.json`, params).then((response) => {
+      setUsers(
+        users.map((p) => {
+          if (p.id === response.data.id) {
+            return response.data;
+          } else {
+            return p;
+          }
+        })
+      );
+      successCallback();
+      setIsUsersShowVisible(false);
+    });
+  };
+
   useEffect(handleIndex, []);
 
   return (
@@ -39,7 +56,7 @@ export function UsersPage() {
       <UsersNew onCreate={handleCreate} />
       <UsersIndex users={users} onShow={handleShow} />
       <Modal show={isUsersShowVisible} onClose={() => setIsUsersShowVisible(false)}>
-        <UsersShow user={currentUser} />
+        <UsersShow user={currentUser} onUpdate={handleUpdate} />
       </Modal>
     </main>
   );
