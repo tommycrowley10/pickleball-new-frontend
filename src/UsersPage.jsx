@@ -49,6 +49,14 @@ export function UsersPage() {
     });
   };
 
+  const handleDestroy = (user) => {
+    console.log("handleDestroy", user);
+    axios.delete(`/users/${user.id}.json`).then(() => {
+      setUsers(users.filter((p) => p.id !== user.id));
+      setIsUsersShowVisible(false);
+    });
+  };
+
   useEffect(handleIndex, []);
 
   return (
@@ -56,7 +64,7 @@ export function UsersPage() {
       <UsersNew onCreate={handleCreate} />
       <UsersIndex users={users} onShow={handleShow} />
       <Modal show={isUsersShowVisible} onClose={() => setIsUsersShowVisible(false)}>
-        <UsersShow user={currentUser} onUpdate={handleUpdate} />
+        <UsersShow photo={currentUser} onUpdate={handleUpdate} onDestroy={handleDestroy} />
       </Modal>
     </main>
   );

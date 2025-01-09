@@ -1,4 +1,4 @@
-export function UsersShow({ user, onUpdate }) {
+export function UsersShow({ user, onUpdate, onDestroy }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -30,6 +30,7 @@ export function UsersShow({ user, onUpdate }) {
         </div>
         <button type="submit">Update</button>
       </form>
+      <button onClick={() => onDestroy(user)}>Destroy</button>
     </div>
   );
 }
