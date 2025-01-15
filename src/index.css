@@ -1,4 +1,4 @@
-/* Global reset */
+Global reset
 * {
   margin: 0;
   padding: 0;
@@ -34,6 +34,10 @@ header {
   color: white;
   border-radius: 10px;
   margin-bottom: 2rem;
+}
+
+header a {
+  margin-right: 1em;
 }
 
 nav .nav-list {
