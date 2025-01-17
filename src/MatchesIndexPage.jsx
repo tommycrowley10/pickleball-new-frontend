@@ -6,9 +6,9 @@ export function MatchesIndexPage() {
   const matches = useLoaderData();
   const navigate = useNavigate();
 
-  const handleShow = (photo) => {
-    console.log("handleShow", photo);
-    navigate(`/matches/${photo.id}`);
+  const handleShow = (match) => {
+    console.log("handleShow", match);
+    navigate(`/matches/${match.id}`);
   };
 
   return (

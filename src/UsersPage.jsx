@@ -64,7 +64,7 @@ export function UsersPage() {
       <UsersNew onCreate={handleCreate} />
       <UsersIndex users={users} onShow={handleShow} />
       <Modal show={isUsersShowVisible} onClose={() => setIsUsersShowVisible(false)}>
-        <UsersShow photo={currentUser} onUpdate={handleUpdate} onDestroy={handleDestroy} />
+        <UsersShow user={currentUser} onUpdate={handleUpdate} onDestroy={handleDestroy} />
       </Modal>
     </main>
   );
